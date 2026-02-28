@@ -154,11 +154,40 @@ button{
 <!-- LOCK -->
 <div class="lock" id="lock">
   <h1>🔒 Locked</h1>
-  <p>Only <b>Anjali</b> can open this</p>
+  <p>If you know what <b>Harsh</b> calls you…<br>you can open this 😌💖</p>
   <input type="text" id="key" placeholder="Enter your name ❤️">
   <button onclick="unlock()">Unlock</button>
   <div class="error" id="error">Wrong key… but cute try 😌</div>
 </div>
+<script>
+function unlock(){
+  const key = document.getElementById("key").value.trim().toLowerCase();
+  const music = document.getElementById("music");
+
+  // 🔐 PASSWORD SET TO "Chasmish"
+  if(key === "chasmish"){
+    document.getElementById("lock").style.display = "none";
+    document.getElementById("letter").style.display = "block";
+
+    // Soft fade-in music
+    music.volume = 0;
+    music.play();
+
+    let volume = 0;
+    const fade = setInterval(() => {
+      if (volume < 0.6) {
+        volume += 0.02;
+        music.volume = volume;
+      } else {
+        clearInterval(fade);
+      }
+    }, 150);
+
+  } else {
+    document.getElementById("error").style.display = "block";
+  }
+}
+</script>
 
 <!-- LETTER -->
 <div class="letter" id="letter">
